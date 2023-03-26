@@ -1,2 +1,2 @@
 Printf Project
-collaborator [Salami Kabiru]
+collaborator [Salami Kabiru](https://github.com/sholakaybee)
