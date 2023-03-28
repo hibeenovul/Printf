@@ -1,12 +1,12 @@
 .\" Manpage for _printf.
-.TH _printf 3 "30 July 2019" "1.0" "Program Manual for _printf"
+.TH _printf 3 "28 MARCH 2023" "1.0" "Program Manual for _printf"
 .SH NAME
  _printf - formatted output conversion and print data.
 .SH SYNOPSIS
 .nf
 .BI printf (FORMAT, ARGUMENT)...
 .PP
-.BI "#include 'holberton.h'"
+.BI "#include 'main.h'"
 .BI "#include <stdarg.h>"
 .BI "#include <unistd.h>"
 .PP
