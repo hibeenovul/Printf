@@ -4,33 +4,33 @@
 void print_buffer(char buffer[], int *buff_ind);
 
 /**
-<<<<<<< HEAD
+
  * _printf - printf function
  * @format: format function
  * char - character function
  * Return: 0
-=======
+ *
  * _printf - Printf function
  * @format: format.
  * Return: Printed chars.
->>>>>>> bcf3d105ebfdaea599174b923f4697d799ac13aa
+
  */
 int _printf(const char *format, ...):
 {
-<<<<<<< HEAD
+	HEAD
 	va_list args;
 	va_start(args, format);
 	count;
-=======
+
 	int i, printed = 0, printed_chars = 0;
 	int flags, width, precision, size, buff_ind = 0;
 	va_list list;
 	char buffer[BUFF_SIZE];
->>>>>>> bcf3d105ebfdaea599174b923f4697d799ac13aa
+
 
 	count = 0;
 
-<<<<<<< HEAD
+	 HEAD
 	while (*format != '\0')
 	{
 		if (*format == '%')
@@ -67,7 +67,7 @@ int _printf(const char *format, ...):
 	}
 	va_end(args);
 		return (count);
-=======
+
 	va_start(list, format);
 
 	for (i = 0; format && format[i] != '\0'; i++)
@@ -101,7 +101,7 @@ int _printf(const char *format, ...):
 	va_end(list);
 
 	return (printed_chars);
->>>>>>> bcf3d105ebfdaea599174b923f4697d799ac13aa
+
 }
 
 /**
