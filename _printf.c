@@ -1,37 +1,54 @@
-#include "main.h"
+#include <stdio.h>
+#include <stdarg.h>
 
 /**
- * _printf - Receives the main string and all the necessary parameters to
- * print a formated string
- * @format: A string containing all the desired characters
- * Return: A total count of the characters printed
+ * _printf - printf function
+ * @format: format function
+ * char - character function
+ * Return: 0
  */
-int _printf(const char *format, ...)
+int _printf(const char *format, ...):
 {
-	int printed_chars;
-	conver_t f_list[] = {
-		{"c", print_char},
-		{"s", print_string},
-		{"%", print_percent},
-		{"d", print_integer},
-		{"i", print_integer},
-		{"b", print_binary},
-		{"r", print_reversed},
-		{"R", rot13},
-		{"u", unsigned_integer},
-		{"o", print_octal},
-		{"x", print_hex},
-		{"X", print_heX},
-		{NULL, NULL}
-	};
-	va_list arg_list;
+	va_list args;
+	va_start(args, format);
+	count;
 
-	if (format == NULL)
-		return (-1);
+	count = 0;
 
-	va_start(arg_list, format);
-	/*Calling parser function*/
-	printed_chars = parser(format, f_list, arg_list);
-	va_end(arg_list);
-	return (printed_chars);
+	while (*format != '\0')
+	{
+		if (*format == '%')
+		{
+			format++;
+			if (*format == 'c')
+			{
+				int c = va_arg(args, int);
+				putchar(c);
+				count++;
+			}
+			else if (*format == 's')
+			{
+				char *s = va_arg(args, char *);
+				while (*s != '\0')
+				{
+					putchar(*s);
+					s++;
+					count++;
+				}
+			}
+			else if (*format == '%')
+			{
+				putchar('%');
+				count++;
+			}
+		}
+		else
+		{
+			putchar(*format);
+			count++;
+		}
+			format++;
+	}
+	va_end(args);
+		return (count);
 }
