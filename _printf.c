@@ -1,37 +1,79 @@
+#include <stdarg.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "main.h"
-
+#include <stddef.h>
 /**
- * _printf - Receives the main string and all the necessary parameters to
- * print a formated string
- * @format: A string containing all the desired characters
- * Return: A total count of the characters printed
+ * get_gunc - it is uded to get funcions
+ * _printf - recreates the printf function
+ * @format: string with format specifier
+ * Return: number of characters printed
  */
+
+int (*get_func(char x))( va_list args)
+{
+	int i;
+
+	def_t func[] = {
+	{'c', print_char},
+	{'s', print_string},
+	{'%', print_percent},
+	{'d', print_d},
+	{'i', print_i},
+	{'b', print_binary},
+	{'u', print_unsigned},
+	{'o', print_octal},
+	{'x', print_hexadecimal},
+	{'X', print_hexa_upper}
+	};
+
+	while (func[i].def)
+	{
+		if (x == func[i].def)
+			return (func[i].f);
+		i++;
+	}
+	return (NULL);
+}
 int _printf(const char *format, ...)
 {
-	int printed_chars;
-	conver_t f_list[] = {
-		{"c", print_char},
-		{"s", print_string},
-		{"%", print_percent},
-		{"d", print_integer},
-		{"i", print_integer},
-		{"b", print_binary},
-		{"r", print_reversed},
-		{"R", rot13},
-		{"u", unsigned_integer},
-		{"o", print_octal},
-		{"x", print_hex},
-		{"X", print_heX},
-		{NULL, NULL}
-	};
-	va_list arg_list;
+	va_list a;
+	int (*m)(va_list);
+	int i, count;
 
 	if (format == NULL)
-		return (-1);
+		return (0);
 
-	va_start(arg_list, format);
-	/*Calling parser function*/
-	printed_chars = parser(format, f_list, arg_list);
-	va_end(arg_list);
-	return (printed_chars);
+	count = 0;
+	va_start(a, format);
+	if (format[0] == '%' && format[1] == '\0')
+		return (-1);
+	for (i = 0; format[i]; i++)
+	{
+		if (format[i] == '%')
+		{
+			if (format[i] == '%')
+			{
+				count += _putchar(format[i]);
+			}
+			else
+			{
+				m = get_func(format[i + 1]);
+				if (m)
+				{
+					count += m(a);
+				}
+				else
+				{
+					count = _putchar(format[i]) + _putchar(format[i + 1]);
+				}
+			}
+		}
+		else
+		{
+			count += _putchar(format[i]);
+		}
+		va_end(a);
+		return (count);
+	}
 }
