@@ -3,7 +3,7 @@
 /**
  * handl_buf - concatenates the buffer characters
  * @buf: buffer pointer
- * @c: charcter to concatenate
+ * @c: charcter to concatenate each format
  * @ibuf: index of buffer pointer
  * Return: index of buffer pointer.
  */
